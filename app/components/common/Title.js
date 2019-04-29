@@ -9,7 +9,7 @@ export default Title;
 
 const styles = StyleSheet.create({
   text: {
-    alignSelf: 'center',
+    // alignSelf: 'center',
     fontSize: 20,
     margin: 30,
   }

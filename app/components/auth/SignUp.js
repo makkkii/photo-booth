@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Button from '../common/Button';
 import Input from '../common/Input';
@@ -24,14 +24,13 @@ export default class Login extends Component {
     });
   };
 
-  onPressLogin = () => {
-    // Call firebase to login
-  };
-
   onPressSignUp = () => {
     // Move to signup page
-    Actions.signup();
   };
+
+  onGoBack = () => {
+    Actions.pop();
+  }
 
   render() {
     return (
@@ -41,13 +40,15 @@ export default class Login extends Component {
           onChange={this.onChangeUser.bind(this)}
           value={this.state.user} />
         <Input placeholder="Password"
-          secureTextEntry
           onChange={this.onChangePassword.bind(this)}
           value={this.state.password} />
-        <Button textButton="Login"
-          onPress={this.onPressLogin.bind(this)} />
         <Button textButton="Signup"
           onPress={this.onPressSignUp.bind(this)} />
+        <TouchableOpacity onPress={this.onGoBack.bind(this)}>
+          <View>
+            <Text style={styles.text}>Already got an account, take me back!</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -60,4 +61,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'white'
   },
-});
+  text: {
+    color: 'blue',
+    fontSize: 15
+  }
+})

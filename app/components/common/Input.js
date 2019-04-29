@@ -11,6 +11,8 @@ const Input = props => (
   />
 );
 
+export default Input;
+
 const styles = StyleSheet.create({
   input: {
     width: 300,
@@ -20,8 +22,7 @@ const styles = StyleSheet.create({
     borderColor: '#b2bec3',
     borderWidth: 1,
     margin: 10,
-    padding: 10
+    padding: 10,
+    alignSelf: 'center'
   }
 });
-
-export default Input;

@@ -5,13 +5,12 @@ const Title = props => (
   <Text style={styles.text}>{props.title}</Text>
 )
 
+export default Title;
 
 const styles = StyleSheet.create({
   text: {
     alignSelf: 'center',
     fontSize: 20,
-    margin: 30
+    margin: 30,
   }
 });
-
-export default Title;

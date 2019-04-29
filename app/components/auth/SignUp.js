@@ -9,7 +9,8 @@ import { Actions } from 'react-native-router-flux';
 export default class Login extends Component {
   state = {
     user: '',
-    password: ''
+    password1: '',
+    password2: ''
   };
 
   onChangeUser = (text) => {
@@ -18,9 +19,14 @@ export default class Login extends Component {
     });
   };
 
-  onChangePassword = (text) => {
+  onChangePassword1 = (password) => {
     this.setState({
-      password: text
+      password1: password
+    });
+  };
+  onChangePassword2 = (password) => {
+    this.setState({
+      password2: password
     });
   };
 
@@ -40,7 +46,12 @@ export default class Login extends Component {
           onChange={this.onChangeUser.bind(this)}
           value={this.state.user} />
         <Input placeholder="Password"
-          onChange={this.onChangePassword.bind(this)}
+          secureTextEntry
+          onChange={this.onChangePassword1.bind(this)}
+          value={this.state.password} />
+        <Input placeholder="Confirm Password"
+          secureTextEntry
+          onChange={this.onChangePassword2.bind(this)}
           value={this.state.password} />
         <Button textButton="Signup"
           onPress={this.onPressSignUp.bind(this)} />

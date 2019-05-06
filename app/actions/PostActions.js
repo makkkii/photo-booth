@@ -1,4 +1,4 @@
-import { POST_FETCH_ALL, POST_LIKE, POST_DISLIKE, POST_ADD_COMMENT } from './types';
+import { POST_FETCH_ALL, POST_LIKE, POST_DISLIKE, POST_ADD_COMMENT, POST_SELECT_IMAGE } from './types';
 import firebase from 'firebase';
 
 export const fetchPosts = () => {
@@ -85,4 +85,9 @@ export const sendMessage = (post, comments, newcomment) => {
       });
   };
 };
+
+export const selectImage = url => ({
+  type: POST_SELECT_IMAGE,
+  payload: url
+});
 

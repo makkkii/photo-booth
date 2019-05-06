@@ -1,4 +1,4 @@
-import { POST_FETCH_ALL, POST_LIKE, POST_DISLIKE } from './types';
+import { POST_FETCH_ALL, POST_LIKE, POST_DISLIKE, POST_ADD_COMMENT } from './types';
 import firebase from 'firebase';
 
 export const fetchPosts = () => {
@@ -54,6 +54,34 @@ export const dislike = (post, likes) => {
       })
       .then(() => {
         dispatch({ type: POST_DISLIKE });
+      });
+  };
+};
+
+// Add a comment.
+
+export const sendMessage = (post, comments, newcomment) => {
+  const { currentUser } = firebase.auth();
+  const newComments = comments + 1;
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/posts/${post}/`)
+      .update({
+        comments_number: newComments
+      })
+      .then(() => {
+        firebase
+          .database()
+          .ref(`/users/${currentUser.uid}/posts/${post}/comments/`)
+          .push({
+            username: 'Shadab',
+            message: newcomment
+          });
+      })
+      .then(() => {
+        dispatch({ type: POST_ADD_COMMENT });
       });
   };
 };

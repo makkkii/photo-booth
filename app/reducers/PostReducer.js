@@ -1,7 +1,8 @@
 import {
   POST_FETCH_ALL, POST_LIKE,
   POST_DISLIKE, POST_ADD_COMMENT,
-  POST_SELECT_IMAGE
+  POST_SELECT_IMAGE,
+  POST_ADD
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -13,13 +14,15 @@ const post = (state = INITIAL_STATE, action) => {
     case POST_FETCH_ALL:
       return { ...state, posts: action.payload };
     case POST_LIKE:
-      return { ...state, posts: action.payload };
+      return { ...state, post: action.payload };
     case POST_DISLIKE:
-      return { ...state, posts: action.payload };
+      return { ...state, post: action.payload };
     case POST_ADD_COMMENT:
-      return { ...state, posts: action.payload };
+      return { ...state, post: action.payload };
     case POST_SELECT_IMAGE:
-      return { ...state, posts: action.payload };
+      return { ...state, post: action.payload };
+    case POST_ADD:
+      return { ...state, post: action.payload };
     default:
       return state;
   }

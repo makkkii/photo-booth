@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 
-import fetchPosts from '../../actions/PostActions';
+import { fetchPosts } from '../../actions/PostActions';
 
 
 class Home extends Component {

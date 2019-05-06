@@ -1,5 +1,6 @@
-import { POST_FETCH_ALL, POST_LIKE, POST_DISLIKE, POST_ADD_COMMENT, POST_SELECT_IMAGE } from './types';
+import { POST_FETCH_ALL, POST_LIKE, POST_DISLIKE, POST_ADD_COMMENT, POST_SELECT_IMAGE, POST_ADD } from './types';
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 
 export const fetchPosts = () => {
   const { currentUser } = firebase.auth();
@@ -90,4 +91,31 @@ export const selectImage = url => ({
   type: POST_SELECT_IMAGE,
   payload: url
 });
+
+export const addPost = (image, location, description) => {
+  const { currentUser } = firebase.auth();
+  const date = new Date().toLocaleString();
+
+  return dispatch => {
+    firebase
+      .database()
+      .ref(`/users/${currentUser.uid}/`)
+      .child('posts')
+      .push({
+        username: 'Shadab',
+        userpic: 'https://pbs.twimg.com/profile_images/1022507144074211330/PjsjV1yr_400x400.jpg',
+        date: date,
+        image: image,
+        title: description,
+        likes: 0,
+        comments_number: 0,
+        location: location,
+        liked: false
+      })
+      .then(() => {
+        dispatch({ type: POST_ADD });
+        Actions.reset('app');
+      });
+  };
+};
 
